@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar/>
-    <h1>This is the search page</h1>
+    <h1>This is the playlist form page</h1>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 import Navbar from '../Navbar'
 
 export default {
-  name: 'SearchPage',
+  name: 'CreatePlaylistPage',
   components: {
     Navbar
   }

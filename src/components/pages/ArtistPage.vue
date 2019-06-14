@@ -1,5 +1,8 @@
 <template>
-  <Navbar/>
+  <div>
+    <Navbar/>
+    <h1>This is an artist page</h1>
+  </div> 
 </template>
 
 <script>

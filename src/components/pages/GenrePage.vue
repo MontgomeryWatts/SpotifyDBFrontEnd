@@ -1,15 +1,15 @@
 <template>
   <div>
     <Navbar/>
-    <h1>This is the search page</h1>
-  </div>
+    <h1>This is the genres page</h1>
+  </div> 
 </template>
 
 <script>
 import Navbar from '../Navbar'
 
 export default {
-  name: 'SearchPage',
+  name: 'ArtistPage',
   components: {
     Navbar
   }
