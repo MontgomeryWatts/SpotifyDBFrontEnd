@@ -19,7 +19,7 @@ Vue.config.productionTip = false
 const routes = [
   {path: '/', component: HomePage},
   {path: '/search', component: SearchPage},
-  {path: '/artists', component: ArtistPage},
+  {path: '/artists/:artistID', component: ArtistPage, props: true},
   {path: '/genres', component: GenrePage},
   {path: '/playlist', component: CreatePlaylistPage}
 ]
