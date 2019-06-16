@@ -12,6 +12,8 @@ import CreatePlaylistPage from './components/pages/CreatePlaylistPage'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+import artistService from './artist-service'
+
 Vue.use(BootstrapVue)
 Vue.use(VueRouter)
 Vue.config.productionTip = false
@@ -19,6 +21,12 @@ Vue.config.productionTip = false
 const routes = [
   {path: '/', component: HomePage},
   {path: '/search', component: SearchPage},
+  {path: '/artists/random', beforeEnter: async (to, from, next) => { 
+    var response = await artistService.getRandomArtistId();
+    response = response.data;
+    var id = response.id;
+    next(`/artists/${id}`);
+  }},
   {path: '/artists/:artistID', component: ArtistPage, props: true},
   {path: '/genres', component: GenrePage},
   {path: '/playlist', component: CreatePlaylistPage}

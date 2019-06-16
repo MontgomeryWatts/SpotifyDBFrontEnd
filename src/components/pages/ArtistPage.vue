@@ -1,15 +1,14 @@
 <template>
   <div>
-    <Navbar/>
-    <h1 v-if="loading">Loading page..</h1>
+    <h1 v-if="!artist">Artist Not Found</h1>
     <div v-else>
-      <p>{{ name }}</p>
-      <b-img rounded="circle" :src="imageUrl" fluid alt></b-img>
+      <p>{{ artist.name }}</p>
+      <b-img rounded="circle" :src="artist.imageUrl" fluid alt></b-img>
 
       <br>
       <br>
       <div>
-        <router-link v-for="(genre, index) in genres" :key="index" :to="'/genres/' + genre">
+        <router-link v-for="(genre, index) in artist.genres" :key="index" :to="'/genres/' + genre">
           {{ genre }}
         </router-link>
       </div>
@@ -18,7 +17,7 @@
 
       <b-container>
         <b-row>
-          <b-col v-for="(album,index) in albums" :key="index" sm="3" md="3" lg="3" xl="3">
+          <b-col v-for="(album,index) in albums" :key="index" sm="3">
             <b-img-lazy :src="album.image" fluid-grow thumbnail c></b-img-lazy>
             <router-link :to="'/albums/' + album._id">{{ album.title }}</router-link>
           </b-col>
@@ -29,21 +28,18 @@
 </template>
 
 <script>
-import Navbar from '../Navbar'
 import service from '../../artist-service'
 
 export default {
   name: 'ArtistPage',
-  components: {
-    Navbar
-  },
   data () {
     return {
-      loading: true,
-      id: '',
-      name: '',
-      imageUrl: '',
-      genres: [],
+      artist: {
+        id: '',
+        name: '',
+        imageUrl: '',
+        genres: []
+      },
       albums: []
     }
   },
@@ -53,15 +49,18 @@ export default {
   created () {
     this.loadPage(this.artistID)
   },
+  async beforeRouteUpdate (to, from, next) {
+    await this.loadPage(to.params.artistID);
+    next();
+  },
   methods: {
     async loadPage (artistID) {
       var response = await service.getArtistPage(artistID);
       response = response.data
-      this.loading = false;
-      this.id = response._id;
-      this.name = response.name;
-      this.genres = response.genres;
-      this.imageUrl = response.image;
+      this.artist.id = response._id;
+      this.artist.name = response.name;
+      this.artist.genres = response.genres;
+      this.artist.imageUrl = response.image;
       this.albums = response.albums
     }
   }
