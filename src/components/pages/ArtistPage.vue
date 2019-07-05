@@ -44,18 +44,19 @@ export default {
     }
   },
   props: {
-    artistID: String
+    artistID: { type: String, required: true}
   },
   created () {
     this.loadPage(this.artistID)
   },
   async beforeRouteUpdate (to, from, next) {
     await this.loadPage(to.params.artistID);
+    window.scrollTo(0,0);
     next();
   },
   methods: {
     async loadPage (artistID) {
-      var response = await service.getArtistPage(artistID);
+      let response = await service.getArtistPage(artistID);
       response = response.data
       this.artist.id = response._id;
       this.artist.name = response.name;

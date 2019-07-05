@@ -3,12 +3,6 @@ import BootstrapVue from 'bootstrap-vue'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 
-import HomePage from './components/pages/HomePage'
-import ArtistPage from './components/pages/ArtistPage'
-import SearchPage from './components/pages/SearchPage'
-import GenrePage from './components/pages/GenrePage'
-import CreatePlaylistPage from './components/pages/CreatePlaylistPage'
-
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
@@ -16,23 +10,45 @@ import artistService from './artist-service'
 
 Vue.use(BootstrapVue)
 Vue.use(VueRouter)
-Vue.config.productionTip = false
 
 const routes = [
-  {path: '/', component: HomePage},
-  {path: '/search', component: SearchPage},
-  {path: '/artists/random', beforeEnter: async (to, from, next) => { 
-    var response = await artistService.getRandomArtistId();
-    response = response.data;
-    var id = response.id;
-    next(`/artists/${id}`);
-  }},
-  {path: '/artists/:artistID', component: ArtistPage, props: true},
-  {path: '/genres', component: GenrePage},
-  {path: '/playlist', component: CreatePlaylistPage}
+  {
+    path: '/',
+    component: () => import('./components/pages/HomePage')
+  },
+  {
+    path: '/search',
+    component: () => import('./components/pages/SearchPage')
+  },
+  {
+    path: '/artists/random', 
+    beforeEnter: async (to, from, next) => { 
+      var response = await artistService.getRandomArtistId();
+      response = response.data;
+      var id = response.id;
+      next(`/artists/${id}`);
+    }
+  },
+  {
+    path: '/artists/:artistID',
+    component: () => import('./components/pages/ArtistPage'),
+    props: true
+  },
+  {
+    path: '/albums/:albumID',
+    component: () => import('./components/pages/AlbumPage'),
+    props: true
+  },
+  {
+    path: '/genres',
+    component: () => import('./components/pages/GenrePage')
+  },
+  {
+    path: '/playlist',
+    component: () => import('./components/pages/CreatePlaylistPage')
+  }
 ]
 const router = new VueRouter({
-  mode: 'history',
   routes
 })
 

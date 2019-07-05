@@ -45,20 +45,12 @@
 </template>
 
 <script>
-import autocomplete from '../autocomplete'
-
 export default {
     name: 'Navbar',
     data: function() {
       return {
         query: '',
         names: []
-      }
-    },
-    methods: {
-      async sendNameRequest() {
-        var response = await autocomplete.getSimilarNames(this.query);
-        this.names = response.data;
       }
     }
 }

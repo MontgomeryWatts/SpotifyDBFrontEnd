@@ -25,7 +25,6 @@
           id="genres"
           placeholder="Enter genre to add"
         >
-
         </b-form-input>
       </b-form-group>
 
