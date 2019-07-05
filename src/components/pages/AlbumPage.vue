@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import service from '../../album-service'
+import service from '@/album-service'
 
 export default {
   name: 'AlbumPage',

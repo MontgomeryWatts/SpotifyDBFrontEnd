@@ -6,7 +6,7 @@ import App from './App.vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-import artistService from './artist-service'
+import artistService from '@/artist-service'
 
 Vue.use(BootstrapVue)
 Vue.use(VueRouter)
@@ -14,11 +14,20 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: () => import('./components/pages/HomePage')
+    component: () => import('@/components/pages/HomePage')
   },
   {
     path: '/search',
-    component: () => import('./components/pages/SearchPage')
+    component: () => import('@/components/pages/SearchPage')
+  },
+  {
+    path: '/search/artist',
+    component: () => import('@/components/pages/ArtistSearchPage'),
+    props: (route) => ({
+      name: route.query.name,
+      genres: route.query.genres,
+      mode: route.query.mode
+    }) 
   },
   {
     path: '/artists/random', 
@@ -31,25 +40,32 @@ const routes = [
   },
   {
     path: '/artists/:artistID',
-    component: () => import('./components/pages/ArtistPage'),
+    component: () => import('@/components/pages/ArtistPage'),
     props: true
   },
   {
     path: '/albums/:albumID',
-    component: () => import('./components/pages/AlbumPage'),
+    component: () => import('@/components/pages/AlbumPage'),
     props: true
   },
   {
     path: '/genres',
-    component: () => import('./components/pages/GenrePage')
+    component: () => import('@/components/pages/GenrePage')
   },
   {
     path: '/playlist',
-    component: () => import('./components/pages/CreatePlaylistPage')
+    component: () => import('@/components/pages/CreatePlaylistPage')
   }
 ]
 const router = new VueRouter({
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  }
 })
 
 new Vue({

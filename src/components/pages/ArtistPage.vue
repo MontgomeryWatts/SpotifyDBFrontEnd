@@ -3,23 +3,32 @@
     <h1 v-if="!artist">Artist Not Found</h1>
     <div v-else>
       <p>{{ artist.name }}</p>
-      <b-img rounded="circle" :src="artist.imageUrl" fluid alt></b-img>
+      <b-img
+        class="artist-image mb-3"
+        rounded="circle"
+        :src="artist.imageUrl"
+        :alt="`${artist.name}'s profile picture`"
+        center
+      ></b-img>
 
-      <br>
-      <br>
-      <div>
-        <router-link v-for="(genre, index) in artist.genres" :key="index" :to="'/genres/' + genre">
-          {{ genre }}
-        </router-link>
-      </div>
-      <br>
-      
+      <b-button
+        v-for="(genre, index) in artist.genres"
+        :key="index"
+        :to="`/genres/${genre}`"
+        class="mx-1 my-1"
+        pill
+      >{{ genre }}</b-button>
 
-      <b-container>
+      <b-container class="mt-1">
         <b-row>
-          <b-col v-for="(album,index) in albums" :key="index" sm="3">
-            <b-img-lazy :src="album.image" fluid-grow thumbnail c></b-img-lazy>
-            <router-link :to="'/albums/' + album._id">{{ album.title }}</router-link>
+          <b-col
+            v-for="(album,index) in albums"
+            :key="index"
+            sm="3"
+            class="my-2"
+          >
+            <b-img-lazy :src="album.image" thumbnail></b-img-lazy>
+            <b-link :to="`/albums/${album._id}`">{{ album.title }}</b-link>
           </b-col>
         </b-row>
       </b-container>
@@ -28,7 +37,7 @@
 </template>
 
 <script>
-import service from '../../artist-service'
+import service from '@/artist-service'
 
 export default {
   name: 'ArtistPage',
@@ -44,14 +53,16 @@ export default {
     }
   },
   props: {
-    artistID: { type: String, required: true}
+    artistID: {
+        type: String,
+        required: true
+      }
   },
   created () {
     this.loadPage(this.artistID)
   },
   async beforeRouteUpdate (to, from, next) {
     await this.loadPage(to.params.artistID);
-    window.scrollTo(0,0);
     next();
   },
   methods: {
@@ -67,3 +78,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.artist-image {
+  height: 200px;
+  width: 200px;
+}
+</style>

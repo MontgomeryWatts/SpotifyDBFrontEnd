@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import services from '../../genre-service';
+import services from '@/genre-service';
 
 export default {
   name: 'GenrePage',

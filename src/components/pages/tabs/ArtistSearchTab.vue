@@ -50,11 +50,11 @@ export default {
   name: 'ArtistSearchTab',
   data () {
     return {
-      selected: 'all',
+      selected: 'AND',
       genresOptions: [
-        { value: 'all', text:'All'},
-        { value: 'any', text:'Any'},
-        { value: 'exclude', text:'Exclude'}
+        { value: 'AND', text:'All'},
+        { value: 'OR', text:'Any'},
+        { value: 'NOT', text:'Exclude'}
       ],
       genres : []
     }

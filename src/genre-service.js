@@ -4,7 +4,7 @@ export default {
   getGenres(){
     return axios({
       method: 'get',
-      url: 'http://localhost:8888/genres'
+      url: 'http://spotifydb.us-east-1.elasticbeanstalk.com/genres'
     })
   }
 }
