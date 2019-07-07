@@ -4,7 +4,7 @@ export default {
   getAlbumPage(id) {
     return axios({
       method: 'get',
-      url: `http://spotifydb.us-east-1.elasticbeanstalk.com/albums/${id}`
+      url: `https://app.spotifydb.com/albums/${id}`
     })
   }
 }
