@@ -4,7 +4,7 @@ export default {
   getArtists(name, genres, genreMode) {
     return axios({
       method: 'get',
-      url: `http://spotifydb.us-east-1.elasticbeanstalk.com/search/artist`,
+      url: `https://app.spotifydb.com/search/artist`,
       params: {
         name: name,
         genres: genres,

@@ -4,13 +4,13 @@ export default {
   getArtistPage(id) {
     return axios({
       method: 'get',
-      url: `http://spotifydb.us-east-1.elasticbeanstalk.com/artists/${id}`
+      url: `https://app.spotifydb.com/artists/${id}`
     })
   },
   getRandomArtistId(){
     return axios({
       method: 'get',
-      url: 'http://spotifydb.us-east-1.elasticbeanstalk.com/artists/random'
+      url: 'https://app.spotifydb.com/artists/random'
     })
   }
 }

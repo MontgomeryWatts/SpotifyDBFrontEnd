@@ -2,7 +2,7 @@
   <b-container>
     <b-row>
       <b-col v-for="(genre,index) in genres" :key="index" sm="3">
-        <router-link :to="'/genres/' + genre">{{ genre }}</router-link>
+        <b-link :to="`/search/artist?genres=${genre}`">{{ genre }}</b-link>
       </b-col>
     </b-row>
   </b-container> 

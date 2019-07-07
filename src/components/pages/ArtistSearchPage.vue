@@ -4,7 +4,7 @@
       <b-col
             v-for="(artist,index) in results"
             :key="index"
-            sm="3"
+            cols="6"
             class="my-2"
       >
         <results-card
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import ResultsCard from '@/components/pages/cards/ResultsCard'
+import ResultsCard from '@/components/cards/ResultsCard'
 import service from '@/search-service';
 
 export default {

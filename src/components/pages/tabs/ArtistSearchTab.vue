@@ -2,6 +2,7 @@
   <b-tab title="Artists" active>
     <b-form>
       <b-form-group
+        class="mt-3"
         id="artist-name-group"
         label-cols="2"
         label-align="right"

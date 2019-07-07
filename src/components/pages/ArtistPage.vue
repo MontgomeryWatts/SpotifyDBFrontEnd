@@ -1,46 +1,67 @@
 <template>
   <div>
     <h1 v-if="!artist">Artist Not Found</h1>
-    <div v-else>
-      <p>{{ artist.name }}</p>
-      <b-img
-        class="artist-image mb-3"
-        rounded="circle"
-        :src="artist.imageUrl"
-        :alt="`${artist.name}'s profile picture`"
-        center
-      ></b-img>
+    <b-container v-else>
+      <b-row>
+        <b-col
+          align-self="center"
+          offset="3"
+          cols="6"
+        >
+          <top-card
+            :externalLink="`spotify:artist:${artist.id}`"
+            :src="artist.imageUrl"
+            :alt="`${artist.name}'s profile picture`"
+            :footer="artist.name"
+          ></top-card>
+        </b-col>
+      </b-row>
 
-      <b-button
-        v-for="(genre, index) in artist.genres"
-        :key="index"
-        :to="`/genres/${genre}`"
-        class="mx-1 my-1"
-        pill
-      >{{ genre }}</b-button>
-
-      <b-container class="mt-1">
-        <b-row>
-          <b-col
-            v-for="(album,index) in albums"
+      <b-row 
+        class="mt-1"
+      >
+        <b-col
+          align-self="center"
+        >
+          <b-button
+            v-for="(genre, index) in artist.genres"
             :key="index"
-            sm="3"
-            class="my-2"
-          >
-            <b-img-lazy :src="album.image" thumbnail></b-img-lazy>
-            <b-link :to="`/albums/${album._id}`">{{ album.title }}</b-link>
-          </b-col>
-        </b-row>
-      </b-container>
-    </div>
+            :to="`/search/artist?genres=${genre}`"
+            class="mx-1 my-1"
+            pill
+          >{{ genre }}</b-button>
+        </b-col>
+      </b-row>
+
+      <b-row>
+        <b-col
+          v-for="(album,index) in albums"
+          :key="index"
+          cols="3"
+          class="my-2"
+        >
+          <top-card
+            :internalLink="`/albums/${album._id}`"
+            :externalLink="`spotify:album:${album._id}`"
+            :src="album.image"
+            :alt="`${album.title}'s album art`"
+            :footer="album.title"
+          ></top-card>
+        </b-col>
+      </b-row>
+    </b-container>
   </div> 
 </template>
 
 <script>
 import service from '@/artist-service'
+import TopCard from '@/components/cards/TopCard'
 
 export default {
   name: 'ArtistPage',
+  components: {
+    TopCard
+  },
   data () {
     return {
       artist: {
@@ -78,10 +99,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.artist-image {
-  height: 200px;
-  width: 200px;
-}
-</style>

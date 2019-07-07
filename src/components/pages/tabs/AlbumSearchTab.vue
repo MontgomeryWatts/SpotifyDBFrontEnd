@@ -2,9 +2,10 @@
   <b-tab title="Albums">
     <b-form>
       <b-form-group
+        class="mt-3"
         id="album-title-group"
-        label-cols-sm="2"
-        label-align-sm="right"
+        label-cols="2"
+        label-align="right"
         label="Title"
         label-for="album-title"
       >
