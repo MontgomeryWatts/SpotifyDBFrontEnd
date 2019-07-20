@@ -24,7 +24,7 @@ export default {
   methods: {
     async loadGenres() {
       let response = await services.getGenres();
-      this.genres = response.data;
+      this.genres = response.data.genres;
     }
   }
 }
