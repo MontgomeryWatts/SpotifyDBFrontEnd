@@ -4,7 +4,7 @@ export default {
   getArtists(name, genres, genreMode) {
     return axios({
       method: 'get',
-      url: `https://app.spotifydb.com/search/artist`,
+      url: `/api/search/artists`,
       params: {
         name: name,
         genres: genres,

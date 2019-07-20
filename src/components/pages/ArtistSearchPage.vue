@@ -7,25 +7,26 @@
             cols="6"
             class="my-2"
       >
-        <results-card
-          :imageUrl="artist.image"
-          :externalLink="`spotify:artist:${artist._id}`"
+        <top-card
           :internalLink="`/artists/${artist._id}`"
-          :text="artist.name"
-        ></results-card>
+          :externalLink="`spotify:artist:${artist._id}`"
+          :src="artist.image"
+          :alt="`${artist.name}'s profile picture`"
+          :footer="artist.name"
+        ></top-card>
       </b-col>
     </b-row>
   </b-container>
 </template>
 
 <script>
-import ResultsCard from '@/components/cards/ResultsCard'
-import service from '@/search-service';
+import TopCard from '@/components/cards/TopCard'
+import service from '@/services/search-service';
 
 export default {
   name: 'ArtistSearchPage',
   components: {
-    ResultsCard
+    TopCard
   },
   props: {
     name: {

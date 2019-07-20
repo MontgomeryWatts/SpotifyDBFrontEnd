@@ -11,7 +11,17 @@
                 :disabled="name === ''"
               >Add</b-button>
             </b-input-group-append>
+
           </b-input-group>
+
+          <b-button
+            @click="removeName(name)"
+            v-for="(name, index) in names"
+            :key="index"
+            size="sm"
+            class="mx-1 mt-2"
+            pill
+          >{{ name }}</b-button>
 
           <b-input-group class="mt-3">
             <b-form-input placeholder="Genre" v-model="genre "></b-form-input>
@@ -23,6 +33,15 @@
             </b-input-group-append>
           </b-input-group>
 
+          <b-button
+            @click="removeGenre(genre)"
+            v-for="(genre, index) in genres"
+            :key="index"
+            size="sm"
+            class="mx-1 mt-2"
+            pill
+          >{{ genre }}</b-button>
+
           <b-input-group
             prepend="Duration"
             :append="durationString"
@@ -30,6 +49,14 @@
           >
             <b-form-input type="range" min="15" max="120" v-model="duration"></b-form-input>
           </b-input-group>
+
+          <b-form-checkbox 
+            v-model="allowExplicit"
+            class="mt-3 float-left"
+            switch
+          >
+            Allow Explicit
+          </b-form-checkbox>
         </b-form>
       </b-card-body>
     </b-card>
@@ -45,7 +72,8 @@ export default {
       genre: '',
       names: [],
       genres: [],
-      duration: 60
+      duration: 60,
+      allowExplicit: false
     }
   },
   methods: {
@@ -56,6 +84,12 @@ export default {
     addGenre() {
       this.genres.push(this.genre);
       this.genre = '';
+    },
+    removeName(target) {
+      this.names = this.names.filter(name => name !== target);
+    },
+    removeGenre(target) {
+      this.genres = this.genres.filter(genre => genre !== target);
     }
   },
   computed : {

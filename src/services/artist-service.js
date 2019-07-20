@@ -4,13 +4,13 @@ export default {
   getArtistPage(id) {
     return axios({
       method: 'get',
-      url: `https://app.spotifydb.com/artists/${id}`
+      url: `/api/artists/${id}`
     })
   },
   getRandomArtistId(){
     return axios({
       method: 'get',
-      url: 'https://app.spotifydb.com/artists/random'
+      url: '/api/artists/random'
     })
   }
 }

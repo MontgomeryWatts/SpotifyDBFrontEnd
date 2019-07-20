@@ -6,7 +6,7 @@ import App from './App.vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-import artistService from '@/artist-service'
+import artistService from '@/services/artist-service'
 
 Vue.use(BootstrapVue)
 Vue.use(VueRouter)
@@ -14,15 +14,15 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: () => import('@/components/pages/HomePage')
+    component: () => import(/* webpackChunkName: "HomePage" */ '@/components/pages/HomePage')
   },
   {
     path: '/search',
-    component: () => import('@/components/pages/SearchPage')
+    component: () => import(/* webpackChunkName: "SearchPage" */ '@/components/pages/SearchPage')
   },
   {
     path: '/search/artist',
-    component: () => import('@/components/pages/ArtistSearchPage'),
+    component: () => import(/* webpackChunkName: "ArtistSearchPage" */ '@/components/pages/ArtistSearchPage'),
     props: (route) => ({
       name: route.query.name,
       genres: route.query.genres,
@@ -34,27 +34,27 @@ const routes = [
     beforeEnter: async (to, from, next) => { 
       var response = await artistService.getRandomArtistId();
       response = response.data;
-      var id = response.id;
+      var id = response._id;
       next(`/artists/${id}`);
     }
   },
   {
     path: '/artists/:artistID',
-    component: () => import('@/components/pages/ArtistPage'),
+    component: () => import(/* webpackChunkName: "ArtistPage" */ '@/components/pages/ArtistPage'),
     props: true
   },
   {
     path: '/albums/:albumID',
-    component: () => import('@/components/pages/AlbumPage'),
+    component: () => import(/* webpackChunkName: "AlbumPage" */ '@/components/pages/AlbumPage'),
     props: true
   },
   {
     path: '/genres',
-    component: () => import('@/components/pages/GenrePage')
+    component: () => import(/* webpackChunkName: "GenrePage" */ '@/components/pages/GenrePage')
   },
   {
     path: '/playlist',
-    component: () => import('@/components/pages/CreatePlaylistPage')
+    component: () => import(/* webpackChunkName: "CreatePlaylistPage" */ '@/components/pages/CreatePlaylistPage')
   }
 ]
 const router = new VueRouter({

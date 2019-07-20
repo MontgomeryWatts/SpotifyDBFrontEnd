@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import service from '@/artist-service'
+import service from '@/services/artist-service'
 import TopCard from '@/components/cards/TopCard'
 
 export default {
