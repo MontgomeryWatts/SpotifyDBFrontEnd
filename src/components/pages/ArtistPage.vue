@@ -26,7 +26,7 @@
           <b-button
             v-for="(genre, index) in artist.genres"
             :key="index"
-            :to="`/search/artist?genres=${genre}`"
+            :to="{ path: '/search/artist', query: { genres: genre}}"
             class="mx-1 my-1"
             pill
           >{{ genre }}</b-button>

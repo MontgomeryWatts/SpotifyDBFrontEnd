@@ -2,7 +2,7 @@
   <b-container>
     <b-row>
       <b-col v-for="(genre,index) in genres" :key="index" sm="3">
-        <b-link :to="`/search/artist?genres=${genre}`">{{ genre }}</b-link>
+        <b-link :to="{ path: '/search/artist', query: { genres: genre}}">{{ genre }}</b-link>
       </b-col>
     </b-row>
   </b-container> 
@@ -12,7 +12,7 @@
 import services from '@/services/genre-service';
 
 export default {
-  name: 'GenrePage',
+  name: 'GenrePage', 
   data () {
     return {
       genres: []
