@@ -15,11 +15,14 @@
                 </b-nav-item-dropdown>
             </b-navbar-nav>
 
-            <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
                 <b-nav-form>
-                  <b-form-input size="sm" v-model="query" class="mr-sm-2" placeholder="Search Artist"></b-form-input>
-                  <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
+                  <b-input-group>
+                    <b-form-input v-model="query" placeholder="Search Artist"></b-form-input>
+                    <b-input-group-append>
+                      <b-button type="submit">Search</b-button>
+                    </b-input-group-append>
+                  </b-input-group>
                 </b-nav-form>
 
                 <b-nav-item to="/search">Advanced Search</b-nav-item>

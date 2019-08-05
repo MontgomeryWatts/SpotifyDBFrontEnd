@@ -94,7 +94,7 @@ export default {
   },
   computed : {
     durationString: function () {
-      return Math.floor(this.duration / 60) + "h " + this.duration % 60 + "m"
+      return Math.floor(this.duration / 60) + ":" + (this.duration % 60).toString().padStart(2, '0') 
     }
   }
 }
