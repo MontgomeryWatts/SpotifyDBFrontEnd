@@ -55,6 +55,10 @@ const routes = [
   {
     path: '/playlist',
     component: () => import(/* webpackChunkName: "CreatePlaylistPage" */ '@/components/pages/CreatePlaylistPage')
+  },
+  {
+    path: '/suggest',
+    component: () => import(/* webpackChunkName: "SuggestionsPage" */ '@/components/pages/SuggestionsPage')
   }
 ]
 const router = new VueRouter({
