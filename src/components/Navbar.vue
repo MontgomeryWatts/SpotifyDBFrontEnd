@@ -10,33 +10,48 @@
         <b-nav-item-dropdown text="Discover">
           <b-dropdown-item to="/artists/random">Go to Random Artist</b-dropdown-item>
           <b-dropdown-item to="/artists">Get Random Artists</b-dropdown-item>
-          <b-dropdown-item to="/genres">View Genres</b-dropdown-item>   
+          <b-dropdown-item to="/genres">View Genres</b-dropdown-item>
+          <b-dropdown-item to="/search">Advanced Search</b-dropdown-item>   
         </b-nav-item-dropdown>
       </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto">
-        <b-nav-form>
+        <b-nav-form @submit.prevent="artistSearch">
           <b-input-group>
-            <b-form-input v-model="query" placeholder="Search Artist"></b-form-input>
-            <b-input-group-append>
-              <b-button type="submit">Search</b-button>
-            </b-input-group-append>
+            <b-form-input v-model="query" placeholder="Search Artists"></b-form-input>
+            <b-button type="submit" slot="append">
+              <v-icon name="search"></v-icon>
+            </b-button>
           </b-input-group>
         </b-nav-form>
 
-        <b-nav-item to="/search">Advanced Search</b-nav-item>
+        <b-nav-item class="ml-2">
+          <v-icon name="cog"></v-icon>
+        </b-nav-item>
+
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
 </template>
 
 <script>
+import VIcon from 'vue-awesome/components/Icon';
+import 'vue-awesome/icons/cog';
+import 'vue-awesome/icons/search';
+
 export default {
     name: 'Navbar',
+    components: {
+      VIcon
+    },
     data: function() {
       return {
-        query: '',
-        names: []
+        query: ''
+      }
+    },
+    methods: {
+      artistSearch(){
+        this.$router.push({ path: '/search/artist', query: { name: this.query } })
       }
     }
 }
