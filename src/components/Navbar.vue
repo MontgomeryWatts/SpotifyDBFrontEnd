@@ -25,7 +25,7 @@
           </b-input-group>
         </b-nav-form>
 
-        <b-nav-item class="ml-2">
+        <b-nav-item class="ml-2" @click="emitModalEvt">
           <v-icon name="cog"></v-icon>
         </b-nav-item>
 
@@ -50,8 +50,11 @@ export default {
       }
     },
     methods: {
-      artistSearch(){
+      artistSearch () {
         this.$router.push({ path: '/search/artist', query: { name: this.query } })
+      },
+      emitModalEvt () {
+        this.$emit('open-settings-modal');
       }
     }
 }

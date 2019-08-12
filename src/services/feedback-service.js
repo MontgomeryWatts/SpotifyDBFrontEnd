@@ -1,11 +1,11 @@
 import axios from 'axios'
 
 export default {
-  postSuggestion(suggestion){
+  postFeedback(feedback){
     return axios({
       method: 'post',
-      url: '/api/suggest',
-      data: suggestion
+      url: '/api/feedback',
+      data: feedback
     })
   }
 }
