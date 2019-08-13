@@ -17,7 +17,7 @@
           </b-form-input>
         </b-form-group>
 
-        <b-button type="submit">Submit</b-button>
+        <b-button class="w-100" type="submit">Submit</b-button>
       </b-form-group>
     </b-form>
   </b-tab>

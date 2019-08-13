@@ -8,10 +8,9 @@
         <b-nav-item to="/playlist">Create Playlist</b-nav-item>
 
         <b-nav-item-dropdown text="Discover">
-          <b-dropdown-item to="/artists/random">Go to Random Artist</b-dropdown-item>
-          <b-dropdown-item to="/artists">Get Random Artists</b-dropdown-item>
-          <b-dropdown-item to="/genres">View Genres</b-dropdown-item>
-          <b-dropdown-item to="/search">Advanced Search</b-dropdown-item>   
+          <b-dropdown-item to="/artists/random">Random Artist</b-dropdown-item>
+          <b-dropdown-item to="/genres">Genres</b-dropdown-item>
+          <b-dropdown-item to="/search">Search</b-dropdown-item>   
         </b-nav-item-dropdown>
       </b-navbar-nav>
 
